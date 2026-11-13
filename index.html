@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Juegos de Leandro</title>
+<meta name="description" content="Juegos web de Leandro: Villarrica, Sapito Guaraní, Defensa Estelar y el port personal de Gangstar: Crime City.">
+<meta name="theme-color" content="#0d1117">
+<link rel="icon" type="image/png" href="favicon.png">
+<meta property="og:title" content="Juegos de Leandro">
+<meta property="og:description" content="Un mundo abierto en Villarrica, un sapito que enseña guaraní, un tower defense espacial y un port personal.">
+<meta property="og:image" content="https://leandroacasco.github.io/img/villarrica.webp">
+<style>
+:root{
+  --fondo:#0d1117; --panel:#161b22; --borde:#2b3340; --tinta:#e8edf4; --suave:#97a3b6;
+  --oro:#f2b84b; --verde:#4cc38a; --azul:#58a6ff; --rosa:#ff6b8b;
+  --ui:system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{background:var(--fondo)}
+body{margin:0;color:var(--tinta);font:400 16px/1.5 var(--ui);
+  padding-inline:max(16px,env(safe-area-inset-left,0px)) max(16px,env(safe-area-inset-right,0px));
+  background-image:radial-gradient(circle at 1px 1px,#1e2633 1px,transparent 1.5px);background-size:26px 26px}
+.wrap{max-width:1040px;margin:0 auto;padding-block:28px 48px;display:flex;flex-direction:column;gap:26px}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--azul);outline-offset:3px;border-radius:10px}
+
+header{display:flex;flex-direction:column;gap:6px;padding-top:6px}
+.eyebrow{font:600 12px var(--ui);letter-spacing:.14em;text-transform:uppercase;color:var(--oro)}
+h1{margin:0;font:800 clamp(38px,9vw,68px)/1 var(--ui);letter-spacing:-.03em}
+h1 em{font-style:normal;color:var(--oro)}
+.lead{margin:6px 0 0;max-width:54ch;color:var(--suave);font-size:17px}
+
+.card{--c:var(--oro);background:var(--panel);border:1px solid var(--borde);border-radius:20px;overflow:hidden;
+  display:flex;flex-direction:column;min-width:0;transition:border-color .15s,transform .15s}
+.card:hover{border-color:var(--c);transform:translateY(-2px)}
+.vista{position:relative;background:#000;border-bottom:1px solid var(--borde);overflow:hidden}
+.vista img{display:block;width:100%;height:100%;object-fit:cover}
+.cuerpo{padding:18px 20px 20px;display:flex;flex-direction:column;gap:10px;flex:1}
+.titulo{display:flex;align-items:center;gap:12px}
+.titulo img,.titulo .ico{width:48px;height:48px;border-radius:12px;flex:none;border:1px solid var(--borde);background:#0b0f14;object-fit:cover}
+.titulo .ico{display:grid;place-items:center;font-size:26px;color:var(--c)}
+h2{margin:0;font:700 28px/1.1 var(--ui);letter-spacing:-.02em}
+.tipo{margin:0;font-size:14px;color:var(--c)}
+.desc{margin:0;color:#c3ccd9;max-width:60ch}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:0;padding:0;list-style:none}
+.chips li{font-size:13px;color:var(--suave);border:1px solid var(--borde);border-radius:999px;padding:2px 10px}
+.acciones{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:auto;padding-top:6px}
+.jugar{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font:700 16px var(--ui);color:#0d1117;background:var(--c);
+  padding:10px 22px;border-radius:999px;transition:filter .12s}
+.jugar:hover{filter:brightness(1.12)}
+.codigo{font-size:14px;color:var(--suave);text-decoration:none;border-bottom:1px solid var(--borde);padding-bottom:1px}
+.codigo:hover{color:var(--tinta);border-color:var(--c)}
+
+/* destacado */
+.destacado{display:grid;grid-template-columns:1.25fr 1fr}
+.destacado .vista{border-bottom:0;border-right:1px solid var(--borde);min-height:330px}
+.destacado h2{font-size:38px}
+.sello{align-self:flex-start;font:700 11px var(--ui);letter-spacing:.12em;text-transform:uppercase;color:#0d1117;background:var(--c);border-radius:6px;padding:3px 8px}
+.v{--c:#e8a33d}
+
+.dos{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,430px),1fr));gap:22px}
+.s{--c:var(--verde)}
+.d{--c:var(--azul)}
+.s .vista,.d .vista{height:250px}
+.s .vista img{object-position:center top}
+.d .vista img{object-position:center 30%}
+
+/* personal */
+.g{--c:var(--rosa);display:grid;grid-template-columns:200px 1fr;border-style:dashed}
+.g .vista{display:grid;place-items:center;border-bottom:0;border-right:1px dashed var(--borde);
+  background:radial-gradient(circle at 50% 120%,#4a0f33,#0b0610 70%)}
+.g .vista img{width:104px;height:104px;border-radius:24px;box-shadow:0 8px 30px #ff6b8b33}
+.aviso{margin:0;font-size:14px;color:var(--suave);border-left:3px solid var(--rosa);padding-left:10px}
+
+footer{font-size:14px;color:var(--suave);border-top:1px solid var(--borde);padding-top:16px;display:flex;flex-direction:column;gap:4px}
+footer b{color:var(--tinta)}
+
+@media (max-width:760px){
+  .destacado{grid-template-columns:1fr}
+  .destacado .vista{border-right:0;border-bottom:1px solid var(--borde);min-height:0;aspect-ratio:16/9}
+  .destacado h2{font-size:32px}
+  .g{grid-template-columns:1fr}
+  .g .vista{border-right:0;border-bottom:1px dashed var(--borde);padding:22px}
+  .s .vista,.d .vista{height:210px}
+}
+@media (prefers-reduced-motion:reduce){.card{transition:none}.card:hover{transform:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <span class="eyebrow">Leandro · hecho en Paraguay</span>
+  <h1>Mis <em>juegos</em></h1>
+  <p class="lead">Cuatro proyectos hechos con Claude. Corren en el navegador, en el celular o en la compu, y se pueden instalar como app.</p>
+</header>
+
+<article class="card destacado v">
+  <div class="vista"><img src="img/villarrica.webp" alt="Pantalla de inicio de Villarrica: un parque con laguna visto desde arriba, en pixel art" width="1200" height="700"></div>
+  <div class="cuerpo">
+    <span class="sello">Lo más nuevo</span>
+    <div class="titulo"><img src="img/villarrica-icon.png" alt=""><div><h2>Villarrica</h2><p class="tipo">Mundo abierto · vista desde arriba</p></div></div>
+    <p class="desc">Un juego de mundo abierto al estilo de los celulares de 2006, ambientado en Villarrica (Paraguay). La ciudad sale de datos reales de OpenStreetMap: calles, plazas, parques, agua y barrios. Arte, código y textos originales.</p>
+    <ul class="chips"><li>🗺️ Ciudad real</li><li>🎨 Pixel art</li><li>🎮 Teclado, táctil o control</li><li>📲 Instalable</li></ul>
+    <div class="acciones">
+      <a class="jugar" href="https://leandroacasco.github.io/villarrica/">▶ Jugar</a>
+      <a class="codigo" href="https://github.com/LeandroACasco/villarrica">Ver código</a>
+    </div>
+  </div>
+</article>
+
+<section class="dos" aria-label="Más juegos">
+  <article class="card s">
+    <div class="vista"><img src="img/sapito.webp" alt="Pantalla de inicio de Sapito Guaraní: la ranita, el nivel y la frase del día" loading="lazy"></div>
+    <div class="cuerpo">
+      <div class="titulo"><img src="img/sapito-icon.svg" alt=""><div><h2>Sapito Guaraní</h2><p class="tipo">Educativo · roguelike de cartas</p></div></div>
+      <p class="desc">Aprendé guaraní jugando: preguntas por tema y dificultad, cartas para armar tu estrategia, pronunciación real en guaraní, conjugación y una sección de cultura.</p>
+      <ul class="chips"><li>📚 6 temas</li><li>🔊 Pronunciación real</li><li>🏆 22 logros</li><li>🌐 Ranking online</li></ul>
+      <div class="acciones">
+        <a class="jugar" href="https://leandroacasco.github.io/sapito-guarani/">▶ Jugar</a>
+        <a class="codigo" href="https://github.com/LeandroACasco/sapito-guarani">Ver código</a>
+      </div>
+    </div>
+  </article>
+
+  <article class="card d">
+    <div class="vista"><img src="img/defensa.webp" alt="Defensa Estelar: el mapa con la barra de torres Cañón, Láser, Misil, Tesla y Hielo" loading="lazy"></div>
+    <div class="cuerpo">
+      <div class="titulo"><div class="ico" aria-hidden="true">★</div><div><h2>Defensa Estelar</h2><p class="tipo">Tower defense · ciencia ficción</p></div></div>
+      <p class="desc">Tower defense inspirado en el clásico Star Defence de los celulares Java. Poné torres, mejoralas y frená las olas de invasores antes de que lleguen a tu base.</p>
+      <ul class="chips"><li>🗺️ 3 mapas</li><li>🔫 5 torres</li><li>👾 5 enemigos</li><li>🏆 Récords online</li></ul>
+      <div class="acciones">
+        <a class="jugar" href="https://leandroacasco.github.io/defensa-estelar/">▶ Jugar</a>
+        <a class="codigo" href="https://github.com/LeandroACasco/defensa-estelar">Ver código</a>
+      </div>
+    </div>
+  </article>
+</section>
+
+<article class="card g">
+  <div class="vista"><img src="img/gangstar-icon.png" alt=""></div>
+  <div class="cuerpo">
+    <span class="sello" style="background:var(--rosa)">Proyecto personal</span>
+    <div class="titulo"><div><h2>Gangstar · Crime City</h2><p class="tipo">Port web de un juego Java de 2006</p></div></div>
+    <p class="desc">Un intérprete de Java para celulares viejos escrito en JavaScript, para volver a jugar un clásico de la infancia en PC y Android, con movimiento suave, pantalla panorámica, guardado en cualquier momento y vista satelital.</p>
+    <ul class="chips"><li>⚙️ Motor propio</li><li>💾 3 ranuras de guardado</li><li>🌎 Español / English</li><li>📲 Instalable</li></ul>
+    <p class="aviso">El repositorio es solo el motor: el juego original no está incluido y hay que cargar el archivo propio en cada dispositivo.</p>
+    <div class="acciones">
+      <a class="jugar" href="https://leandroacasco.github.io/gangstar/">Abrir</a>
+      <a class="codigo" href="https://github.com/LeandroACasco/gangstar">Ver código</a>
+    </div>
+  </div>
+</article>
+
+<footer>
+  <span><b>Programación:</b> Leandro, con asistencia de IA.</span>
+  <span>Villarrica usa datos de OpenStreetMap © colaboradores (ODbL). Gangstar: Crime City © Gameloft; este sitio solo muestra el motor del port.</span>
+  <span>Los juegos de Dina, con los dibujos de Sofía, están en <a href="https://kiut-studio.github.io/"><b>Kiut Studio</b></a>.</span>
+</footer>
+
+</div>
+</body>
+</html>
