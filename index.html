@@ -52,6 +52,8 @@ h2{margin:0;font:700 28px/1.1 var(--ui);letter-spacing:-.02em}
 .jugar:hover{filter:brightness(1.12)}
 .codigo{font-size:14px;color:var(--suave);text-decoration:none;border-bottom:1px solid var(--borde);padding-bottom:1px}
 .codigo:hover{color:var(--tinta);border-color:var(--c)}
+.saber{display:inline-flex;align-items:center;text-decoration:none;font:600 15px var(--ui);color:var(--tinta);border:1px solid var(--borde);padding:9px 18px;border-radius:999px;transition:border-color .12s}
+.saber:hover{border-color:var(--c)}
 
 /* destacado */
 .destacado{display:grid;grid-template-columns:1.25fr 1fr}
@@ -99,7 +101,7 @@ footer b{color:var(--tinta)}
 </header>
 
 <article class="card destacado v">
-  <div class="vista"><img src="img/villarrica.webp" alt="Pantalla de inicio de Villarrica: un parque con laguna visto desde arriba, en pixel art" width="1200" height="700"></div>
+  <a class="vista" href="villarrica-guia/" aria-label="Saber más sobre Villarrica" style="display:block"><img src="img/villarrica.webp" alt="Pantalla de inicio de Villarrica: un parque con laguna visto desde arriba, en pixel art" width="1200" height="700"></a>
   <div class="cuerpo">
     <span class="sello">Lo más nuevo</span>
     <div class="titulo"><img src="img/villarrica-icon.png" alt=""><div><h2>Villarrica</h2><p class="tipo">Mundo abierto · vista desde arriba</p></div></div>
@@ -107,6 +109,7 @@ footer b{color:var(--tinta)}
     <ul class="chips"><li>🗺️ Ciudad real</li><li>🎨 Pixel art</li><li>🎮 Teclado, táctil o control</li><li>📲 Instalable</li></ul>
     <div class="acciones">
       <a class="jugar" href="https://leandroacasco.github.io/villarrica/">▶ Jugar</a>
+      <a class="saber" href="villarrica-guia/">Saber más</a>
       <a class="codigo" href="https://github.com/LeandroACasco/villarrica">Ver código</a>
     </div>
   </div>

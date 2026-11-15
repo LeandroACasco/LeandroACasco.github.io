@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Villarrica · Guía del juego</title>
+<meta name="description" content="Qué es Villarrica, cómo se juega y qué vas a encontrar: un mundo abierto con vista desde arriba, hecho con el mapa real de Villarrica (Paraguay).">
+<meta name="theme-color" content="#0d1117">
+<link rel="icon" type="image/png" href="../favicon.png">
+<meta property="og:title" content="Villarrica · Guía del juego">
+<meta property="og:description" content="Un mundo abierto en la ciudad real de Villarrica, Paraguay. Conocé el juego antes de jugarlo.">
+<meta property="og:image" content="https://leandroacasco.github.io/img/villarrica/plaza-noche.webp">
+<style>
+:root{
+  --fondo:#0d1117; --panel:#161b22; --borde:#2b3340; --tinta:#e8edf4; --suave:#97a3b6;
+  --oro:#e8a33d; --verde:#4cc38a; --azul:#58a6ff; --rosa:#ff6b8b;
+  --ui:system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{background:var(--fondo);scroll-behavior:smooth}
+body{margin:0;color:var(--tinta);font:400 17px/1.6 var(--ui);
+  padding-inline:max(16px,env(safe-area-inset-left,0px)) max(16px,env(safe-area-inset-right,0px));
+  background-image:radial-gradient(circle at 1px 1px,#1e2633 1px,transparent 1.5px);background-size:26px 26px}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--azul);outline-offset:3px;border-radius:10px}
+.wrap{max-width:980px;margin:0 auto;padding-block:20px 56px;display:flex;flex-direction:column;gap:44px}
+.volver{font-size:14px;color:var(--suave);text-decoration:none;align-self:flex-start}
+.volver:hover{color:var(--tinta)}
+h1{margin:0;font:800 clamp(40px,10vw,72px)/1 var(--ui);letter-spacing:-.03em}
+h1 em{font-style:normal;color:var(--oro)}
+h2{margin:0 0 6px;font:750 clamp(26px,5vw,34px)/1.15 var(--ui);letter-spacing:-.02em}
+h3{margin:0 0 4px;font:700 21px/1.2 var(--ui)}
+p{margin:0 0 12px;color:#c9d2df}
+.eyebrow{font:600 12px var(--ui);letter-spacing:.14em;text-transform:uppercase;color:var(--oro)}
+.lead{font-size:20px;color:#d5dce8;max-width:60ch}
+.sub{color:var(--suave);font-size:15px}
+
+.hero{display:flex;flex-direction:column;gap:14px}
+.hero img{width:100%;height:auto;border-radius:20px;border:1px solid var(--borde);display:block}
+.botones{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.jugar{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font:700 17px var(--ui);color:#0d1117;background:var(--oro);padding:12px 26px;border-radius:999px}
+.jugar:hover{filter:brightness(1.1)}
+.sec{display:inline-flex;text-decoration:none;font:600 15px var(--ui);color:var(--tinta);border:1px solid var(--borde);padding:11px 20px;border-radius:999px}
+.sec:hover{border-color:var(--oro)}
+
+.datos{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:0;padding:0;list-style:none}
+.datos li{background:var(--panel);border:1px solid var(--borde);border-radius:16px;padding:14px 16px}
+.datos b{display:block;font:800 26px/1.1 var(--ui);color:var(--oro)}
+.datos span{font-size:14px;color:var(--suave)}
+
+.modos{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:18px}
+.modo{background:var(--panel);border:1px solid var(--borde);border-radius:20px;overflow:hidden;display:flex;flex-direction:column}
+.modo img{width:100%;height:auto;display:block;border-bottom:1px solid var(--borde)}
+.modo .t{padding:18px 20px 20px}
+.modo ul{margin:8px 0 0;padding-left:20px;color:#c9d2df}
+.modo li{margin:3px 0}
+.etq{display:inline-block;font:700 11px var(--ui);letter-spacing:.12em;text-transform:uppercase;color:#0d1117;background:var(--verde);border-radius:6px;padding:3px 8px;margin-bottom:8px}
+.etq.l{background:var(--azul)}
+
+.bloque{display:grid;grid-template-columns:1.1fr 1fr;gap:26px;align-items:center}
+.bloque.inv{grid-template-columns:1fr 1.1fr}
+.bloque.inv figure{order:2}
+.bloque figure{margin:0}
+.bloque img{width:100%;height:auto;display:block;border-radius:18px;border:1px solid var(--borde)}
+.bloque figcaption{font-size:13px;color:var(--suave);margin-top:6px}
+.bloque ul{margin:6px 0 0;padding-left:20px;color:#c9d2df}
+.bloque li{margin:4px 0}
+
+.grilla{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,290px),1fr));gap:16px}
+.tarj{background:var(--panel);border:1px solid var(--borde);border-radius:18px;overflow:hidden}
+.tarj img{width:100%;height:auto;display:block;border-bottom:1px solid var(--borde)}
+.tarj div{padding:14px 16px 16px}
+.tarj p{margin:0;font-size:15px}
+
+table{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--borde);border-radius:16px;overflow:hidden;font-size:15px}
+th,td{text-align:left;padding:10px 14px;border-bottom:1px solid var(--borde);vertical-align:top}
+th{color:var(--oro);font-weight:650;width:34%}
+tr:last-child th,tr:last-child td{border-bottom:0}
+kbd{font:600 13px ui-monospace,SFMono-Regular,Menlo,monospace;background:#0b0f14;border:1px solid var(--borde);border-radius:6px;padding:1px 6px}
+
+.nota{border-left:3px solid var(--rosa);padding:4px 0 4px 14px;color:var(--suave);font-size:15px}
+.cta{background:var(--panel);border:1px solid var(--borde);border-radius:22px;padding:26px;display:flex;flex-direction:column;gap:12px;align-items:flex-start}
+footer{font-size:14px;color:var(--suave);border-top:1px solid var(--borde);padding-top:16px;display:flex;flex-direction:column;gap:4px}
+footer b{color:var(--tinta)}
+
+@media (max-width:760px){
+  body{font-size:16px}
+  .bloque,.bloque.inv{grid-template-columns:1fr}
+  .bloque.inv figure{order:0}
+  th{width:40%}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<a class="volver" href="../">← Todos mis juegos</a>
+
+<header class="hero">
+  <span class="eyebrow">Mundo abierto · Paraguay</span>
+  <h1><em>Villarrica</em></h1>
+  <p class="lead">Un juego donde recorrés la ciudad real de Villarrica, con sus calles, su plaza y su parque, a pie, en moto, en auto o en karumbe. Lo hice con la mirada de los juegos de celular de 2006, pero con la tecnología de hoy.</p>
+  <div class="botones">
+    <a class="jugar" href="https://leandroacasco.github.io/villarrica/">▶ Jugar ahora</a>
+    <a class="sec" href="#como-se-juega">Cómo se juega</a>
+    <a class="sec" href="https://github.com/LeandroACasco/villarrica">Ver código</a>
+  </div>
+  <img src="../img/villarrica/titulo.webp" width="1100" height="619" alt="Pantalla de inicio de Villarrica: el parque con la laguna visto desde arriba, en pixel art, con el logo del juego">
+</header>
+
+<section aria-labelledby="que-es">
+  <h2 id="que-es">¿Qué es este juego?</h2>
+  <p>Villarrica es un juego de mundo abierto: no hay niveles ni pantallas, hay una ciudad entera para recorrer. La ves desde arriba, como en un mapa que cobra vida: la gente camina, el tránsito circula, cae la noche y se prenden los faroles.</p>
+  <p>El mapa sale de datos reales de <b>OpenStreetMap</b> y de los barrios oficiales del INE, así que las calles, las manzanas, las plazas y el parque están donde están en la vida real. Los lugares más conocidos del Centro los fui dibujando a mano con fotos y videos. <b>Todo el arte, la música y el código son originales.</b></p>
+  <ul class="datos">
+    <li><b>5 × 5 km</b><span>de ciudad real, con sus 8 barrios</span></li>
+    <li><b>26</b><span>vehículos: motos, autos, colectivos y camiones</span></li>
+    <li><b>2 modos</b><span>Historia y Libre</span></li>
+    <li><b>Día y noche</b><span>con sol, sombras y clima</span></li>
+    <li><b>Online</b><span>jugá con amigos con un código</span></li>
+  </ul>
+</section>
+
+<section aria-labelledby="modos">
+  <h2 id="modos">Dos formas de jugar</h2>
+  <div class="modos">
+    <article class="modo">
+      <img src="../img/villarrica/historia.webp" width="1100" height="619" loading="lazy" alt="Comienzo del modo Historia: un cartel cuenta que te quedaste sin changa, alquilás una pieza en Santa Lucía y tenés 35.000 guaraníes">
+      <div class="t">
+        <span class="etq">Historia</span>
+        <h3>Jajupíta: «vamos a subir»</h3>
+        <p>Empezás con casi nada: sin trabajo, con una pieza alquilada en Santa Lucía y 35.000 Gs. en el bolsillo. De a poco vas a pagar la pieza, comer, vender chipa, conseguir tu moto y hacerte un lugar en la ciudad.</p>
+        <ul>
+          <li>Un día del juego dura 30 minutos reales.</li>
+          <li>Hambre, alquiler, saldo del celular y deudas: todo se paga.</li>
+          <li>Misiones con personajes y diálogos con humor y frases en jopara.</li>
+          <li>Los barrios se van abriendo a medida que avanzás.</li>
+        </ul>
+      </div>
+    </article>
+    <article class="modo">
+      <img src="../img/villarrica/plaza-dia.webp" width="1100" height="619" loading="lazy" alt="La Plaza de los Héroes vista desde arriba, con tajy rosados y amarillos, bancos y autos estacionados frente a la plaza">
+      <div class="t">
+        <span class="etq l">Libre</span>
+        <h3>Paseo libre</h3>
+        <p>Sin presión: empezás con 1.500.000 Gs., con todos los barrios abiertos y la hora real de tu reloj. Es ideal para recorrer, probar vehículos, ir de compras o jugar online con amigos.</p>
+        <ul>
+          <li>Podés teletransportarte marcando un destino en el mapa.</li>
+          <li>Podés llevarte los vehículos del tránsito.</li>
+          <li>Es el modo del multijugador.</li>
+        </ul>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section aria-labelledby="encontrar">
+  <h2 id="encontrar">Qué vas a encontrar</h2>
+  <p class="sub">Un recorrido por lo que tiene el juego hoy. Se sigue agregando cosas.</p>
+</section>
+
+<section class="bloque" aria-labelledby="ciudad">
+  <div>
+    <h3 id="ciudad">Una ciudad que se reconoce</h3>
+    <p>La Plaza de los Héroes con su laja, sus lapachos (tajy rosados y amarillos), el anfiteatro y las guirnaldas; la Municipalidad y el Teatro; la calle Mariscal López; el cuartel de bomberos; el hospital, las comisarías y la terminal.</p>
+    <ul>
+      <li>Veredas, empedrado, calles de tierra colorada y esquinas redondeadas.</li>
+      <li>Cebras, cajones de estacionamiento y rayitas de moto como en la calle real.</li>
+      <li>Barrios con carácter propio: más autos y casas más grandes en unos, más motos y casas humildes en otros.</li>
+    </ul>
+  </div>
+  <figure><img src="../img/villarrica/parque.webp" width="1100" height="619" loading="lazy" alt="El Parque Manuel Ortiz Guerrero con la laguna, el monumento a Panambi Vera y el embarcadero con los cisnes de pedal"><figcaption>El parque de la laguna Ykua Pytã: cisnes de pedal, carpinchos, patos y garzas.</figcaption></figure>
+</section>
+
+<section class="bloque inv" aria-labelledby="noche">
+  <div>
+    <h3 id="noche">De día, de noche y con lluvia</h3>
+    <p>La ciudad cambia durante el día. El sol mueve las sombras, el atardecer tiñe todo de naranja y de noche se prenden los faroles, las vidrieras y las luces de los autos.</p>
+    <ul>
+      <li>Hora real, siempre de día o siempre de noche, a elección.</li>
+      <li>Clima real de Villarrica (calor, frío, nublado o lluvia) o el que elijas.</li>
+      <li>Boliches y pubs que solo abren de noche.</li>
+    </ul>
+  </div>
+  <figure><img src="../img/villarrica/plaza-noche.webp" width="1100" height="619" loading="lazy" alt="La plaza de noche, con faroles, guirnaldas de luces y autos con los faros prendidos"><figcaption>La misma plaza, de noche.</figcaption></figure>
+</section>
+
+<section class="bloque" aria-labelledby="vehiculos">
+  <div>
+    <h3 id="vehiculos">Motos, autos, colectivos y hasta un karumbe</h3>
+    <p>Hay 26 vehículos de diseño propio, con nombres inventados en guaraní: motos cub, mini y de calle, motocargas, una bici, autos, camionetas, colectivos, camiones y el coche de caballo de Villarrica.</p>
+    <ul>
+      <li>Se ven en perspectiva, con el techo y el costado.</li>
+      <li>Tienen tablero con nafta y llantas que se pinchan.</li>
+      <li>Podés tunearlos en el taller: pintura, llantas, neón y más.</li>
+      <li>Choques con rebote, derrapes y abolladuras.</li>
+    </ul>
+  </div>
+  <figure><img src="../img/villarrica/vehiculos.webp" width="1100" height="540" loading="lazy" alt="Galería de vehículos del juego: autos, camionetas y camiones de diseño propio, vistos en perspectiva"><figcaption>Algunos de los vehículos del juego.</figcaption></figure>
+</section>
+
+<section aria-labelledby="dentro">
+  <h2 id="dentro">Lugares por dentro</h2>
+  <p>Muchos lugares se pueden visitar caminando por adentro, con su gente y sus cosas.</p>
+  <div class="grilla">
+    <article class="tarj"><img src="../img/villarrica/tienda.webp" width="838" height="650" loading="lazy" alt="Interior de la tienda de ropa Ao Porã, con percheros, mostrador, maniquíes y silla de peluquería"><div><h3>Tienda de ropa y peluquería</h3><p>Probate ropa, cambiate el pelo y armá tu propio personaje.</p></div></article>
+    <article class="tarj"><img src="../img/villarrica/mercado.webp" width="839" height="653" loading="lazy" alt="Interior del Mercado Municipal con puestos de chipa, comedor, frutas, carnicería y verduras"><div><h3>Mercado Municipal</h3><p>Siete puestos con comida de la zona: chipa, sopa paraguaya, tereré con yuyos.</p></div></article>
+    <article class="tarj"><img src="../img/villarrica/super.webp" width="945" height="653" loading="lazy" alt="Interior de un supermercado con góndolas, cajas con filas, carniceria, panadería y gente comprando"><div><h3>Supermercados</h3><p>Pasillos, carritos, filas en las cajas y mucha gente comprando.</p></div></article>
+  </div>
+  <p class="sub" style="margin-top:12px">Además: el Teatro Municipal con cine sincronizado, tu pieza (con gato y cucaracha), la despensa, el taller y los boliches de noche.</p>
+</section>
+
+<section class="bloque inv" aria-labelledby="celular">
+  <div>
+    <h3 id="celular">Tu celular, adentro del juego</h3>
+    <p>En el modo Historia tenés un celular con apps: pedí una moto o un auto con <b>Mbohasa</b>, mirá tu billetera, sacá fotos con la cámara, usá el GPS o jugá a la culebra. Ojo: empieza con la pantalla rota y hay que arreglarla.</p>
+    <ul>
+      <li>Dos tipos de plata: efectivo y billetera electrónica.</li>
+      <li>Préstamos del banco y de la financiera (con sus intereses).</li>
+      <li>Fotos de la ciudad con lugar y hora.</li>
+    </ul>
+  </div>
+  <figure><img src="../img/villarrica/celular.webp" width="1100" height="619" loading="lazy" alt="El celular del personaje con la pantalla rota y las aplicaciones: Mbohasa, Billetera, Mochila, Notas, Changas, Misiones, GPS, Cámara, Galería y Culebra"><figcaption>El celular del modo Historia.</figcaption></figure>
+</section>
+
+<section aria-labelledby="vida">
+  <h2 id="vida">Una ciudad con vida</h2>
+  <ul>
+    <li><b>Gente en la calle:</b> peatones con jopara, vendedores de empanadas y helados, artesanos y perros callejeros.</li>
+    <li><b>Animales:</b> vacas y caballos en las afueras, carpinchos y garzas en el parque, loros, gatos y gallinas en los patios.</li>
+    <li><b>Emergencias:</b> la ambulancia, los bomberos voluntarios y la Policía salen de sus bases reales cuando pasa algo.</li>
+    <li><b>Online:</b> creá una sala con un código y recorré la ciudad con amigos: se ven, se hablan por chat y pueden subirse de pasajeros a la moto del otro.</li>
+  </ul>
+</section>
+
+<section aria-labelledby="como-se-juega">
+  <h2 id="como-se-juega">Cómo se juega</h2>
+  <p>Anda en la compu, en el celular y con control de consola. En el celular se puede <b>instalar como una app</b> desde el menú del navegador.</p>
+  <table>
+    <tr><th>Moverse</th><td><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> o las flechas · en el celular, el joystick</td></tr>
+    <tr><th>Acción (hablar, entrar, comprar)</th><td><kbd>Espacio</kbd> o <kbd>Enter</kbd> · botón ACCIÓN</td></tr>
+    <tr><th>Correr</th><td><kbd>Shift</kbd> · botón CORRER</td></tr>
+    <tr><th>Subir o bajar de un vehículo</th><td><kbd>F</kbd></td></tr>
+    <tr><th>Mapa y GPS</th><td><kbd>M</kbd> · marcá un destino y seguí la flecha</td></tr>
+    <tr><th>Celular (Historia)</th><td><kbd>C</kbd></td></tr>
+    <tr><th>Menú</th><td><kbd>Esc</kbd></td></tr>
+  </table>
+  <figure style="margin:18px 0 0">
+    <img src="../img/villarrica/telefono.webp" width="900" height="416" loading="lazy" alt="El juego en un celular acostado, con el joystick a la izquierda y los botones ACCIÓN y CORRER a la derecha" style="width:100%;height:auto;border-radius:18px;border:1px solid var(--borde);display:block">
+    <figcaption style="font-size:13px;color:var(--suave);margin-top:6px">En el celular, acostado, con controles táctiles.</figcaption>
+  </figure>
+  <p class="nota" style="margin-top:18px">Para tener en cuenta: el juego tiene humor y situaciones de la calle. En el modo Libre se pueden robar vehículos, la Policía te persigue y hay armas de prueba, sin sangre. Si lo va a jugar un menor, conviene mirarlo antes.</p>
+</section>
+
+<section class="cta" aria-labelledby="listo">
+  <h2 id="listo">¿Listo para recorrer Villarrica?</h2>
+  <p style="margin:0">Se abre al instante, sin instalar nada y sin cuenta. Si vas a jugar online, tienen que entrar los dos al mismo código de sala.</p>
+  <div class="botones">
+    <a class="jugar" href="https://leandroacasco.github.io/villarrica/">▶ Jugar ahora</a>
+    <a class="sec" href="../">Ver mis otros juegos</a>
+  </div>
+</section>
+
+<footer>
+  <span><b>Villarrica</b> está en construcción y se actualiza seguido. Hecho por Leandro, con asistencia de IA, con ideas y pruebas del equipo de Kiut Studio.</span>
+  <span>Villarrica usa datos de OpenStreetMap © colaboradores (ODbL) y de los barrios y niveles del INE. El arte, la música, los textos y el código son originales.</span>
+  <span>El estilo se inspira en los juegos de celular Java de mediados de los 2000, como Gangstar: Crime City (© Gameloft); no se usa nada de ese juego. Los negocios y vehículos llevan nombres inventados.</span>
+</footer>
+
+</div>
+</body>
+</html>
